@@ -67,6 +67,11 @@ public class GUI extends javax.swing.JFrame {
         });
 
         suggestButton.setText("Suggest a Recipe");
+        suggestButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                suggestButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -147,6 +152,13 @@ public class GUI extends javax.swing.JFrame {
          add.setVisible(true);
          
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void suggestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suggestButtonActionPerformed
+         // TODO add your handling code here:
+        SuggestRecipe sr = new SuggestRecipe(con, cm);
+        sr.setVisible(true);
+        
+    }//GEN-LAST:event_suggestButtonActionPerformed
 
     /**
      * @param args the command line arguments

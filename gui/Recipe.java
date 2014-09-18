@@ -6,6 +6,7 @@ package recipease.gui;
 
 import javax.swing.ImageIcon;
 import recipease.objects.RecipeData;
+import recipease.utils.SendEmail;
 
 /**
  *
@@ -14,6 +15,7 @@ import recipease.objects.RecipeData;
 public final class Recipe extends javax.swing.JFrame {
 String recipeName;
 RecipeData rd;
+String source;
     /**
      * Creates new form Recipe
      */
@@ -30,6 +32,17 @@ RecipeData rd;
         setLabels();
         setIng();
         setMethod();
+        
+    }
+    
+    public Recipe(RecipeData rd, String s) {
+        this.rd = rd;
+        source = s;
+        initComponents();
+        setLabels();
+        setIng();
+        setMethod();
+        jButton2.setText("Suggest something else please!");
         
     }
     
@@ -97,6 +110,11 @@ RecipeData rd;
         });
 
         jButton3.setText("Yum! Email this to me!");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recipease/gui/images/hat.png"))); // NOI18N
 
@@ -289,10 +307,17 @@ RecipeData rd;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
+
+        if(source == null){
         Search search = new Search();
         search.setVisible(true);
         this.dispose();
+        }else{
+           SuggestRecipe suggestRecipe = new SuggestRecipe();
+           suggestRecipe.setVisible(true);
+           this.dispose();
+            
+        }
         
         
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -334,6 +359,13 @@ RecipeData rd;
         jScrollPane1.setSize(94, 164);
         System.out.println("clicked");
     }//GEN-LAST:event_minMouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        SendEmail sendEmail = new SendEmail();
+        sendEmail.run();
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

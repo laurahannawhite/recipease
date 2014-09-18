@@ -23,6 +23,7 @@ public class Search extends javax.swing.JFrame {
     ConnectionManager cm;
     DefaultTableModel dt = new DefaultTableModel();
     HashMap<String, HashSet> tableContents = new HashMap<String, HashSet>();
+    
 
     /**
      * Creates new form Search
@@ -242,6 +243,7 @@ public class Search extends javax.swing.JFrame {
             while (rs.next()){
                 //set name
                 rd.setName(rs.getString(2));
+                System.out.println(rd.getName());
                 //set ingredients
                 rd.setIngredients(rs.getString(3));
                 //set method
