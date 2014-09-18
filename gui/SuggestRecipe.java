@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Random;
+import javax.swing.JOptionPane;
 import recipease.objects.RecipeData;
 
 /**
@@ -50,6 +51,8 @@ ConnectionManager cm;
             //Gets the number of results
             rs.last();
             int len = rs.getRow();
+            
+            if(len > 0){
             //Generates a random number
             Random rand = new Random();
             int x = rand.nextInt(len) + 1;
@@ -82,10 +85,16 @@ ConnectionManager cm;
                 }
             }
             
+            
             Recipe rec = new Recipe(recData, "suggestion");
             rec.setVisible(true);
             this.dispose();
-            
+            }else{
+             //if there are no results for the search term, the user is shown a message dialog
+                
+             JOptionPane.showMessageDialog(null, "Sorry! No results for that. Try again.");
+             cuisineField.setText("");
+            }
             
             }catch(Exception e){
                 System.out.println("Cannot connect to database");
@@ -97,6 +106,10 @@ ConnectionManager cm;
         }
         
         
+        
+    }
+    
+    private void suggestionMeal(){
         
     }
 
