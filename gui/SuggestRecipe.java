@@ -4,6 +4,7 @@
  */
 package recipease.gui;
 
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -121,6 +122,12 @@ ConnectionManager cm;
 
         jLabel1.setText("Can't decide what to eat? Let me suggest something for you!");
 
+        cuisineField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cuisineFieldKeyReleased(evt);
+            }
+        });
+
         jLabel3.setText("Enter a cuisine:");
 
         jLabel4.setText("OR");
@@ -205,6 +212,13 @@ ConnectionManager cm;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         suggestion();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void cuisineFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cuisineFieldKeyReleased
+         if (evt.getKeyCode() == KeyEvent.VK_ENTER){
+             //allows the user to just hit enter to search
+             suggestion();
+         }
+    }//GEN-LAST:event_cuisineFieldKeyReleased
 
     /**
      * @param args the command line arguments
